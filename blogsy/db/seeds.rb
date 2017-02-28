@@ -7,16 +7,23 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #   seed your development database with five users, each with a random number of posts.
-    5.times.each do
+    5.times do
       user = User.create(
         username: Faker::Name.name,
         email: Faker::Internet.email
         )
-      rand(1..9).times.each do
-        Post.create(
+      rand(1..9).times do
+        post = Post.create(
           title: Faker::Hacker.noun,
           body:  Faker::Hacker.say_something_smart,
           user:  user
         )
+        rand(1..4).times do
+          comment = Comment.new(
+             body: Faker::Hacker.say_something_smart,
+             user: user
+          )
+          post.comments << comment
+        end
       end
     end
