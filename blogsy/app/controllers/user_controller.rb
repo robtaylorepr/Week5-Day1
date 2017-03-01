@@ -18,4 +18,17 @@ class UserController < ApplicationController
     end
   end
 
+  # should return a JSON representation
+  # of the posts written by a user with
+  # an username of params[:id]
+  def showposts
+    user = User.find(params[:id]).posts
+    binding.pry
+    if user
+      render json: user
+    else
+      render json: user.errors.full_messages
+    end
+  end
+
 end
