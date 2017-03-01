@@ -1,5 +1,5 @@
 class PostController < ApplicationController
-  
+
   def root
   end
 
@@ -19,4 +19,9 @@ class PostController < ApplicationController
     render json: @comments
   end
 
+  def delete
+    @post = Post.delete(params[:id])
+    # ? to to return status of 200 ?
+  end
+  
 end
